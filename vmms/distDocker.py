@@ -98,7 +98,7 @@ class DistDocker(object):
         try:
             self.log = logging.getLogger("DistDocker")
             self.hostDNSPoolname = config.Config.HOST_ALIAS
-            self.hostUser = "ubuntu"
+            self.hostUser = "autograder"
 
             if len(config.Config.DOCKER_HOST_USER) > 0:
                 self.hostUser = config.Config.DOCKER_HOST_USER
