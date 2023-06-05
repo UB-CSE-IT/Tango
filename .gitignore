@@ -8,7 +8,8 @@ scripts/*.sh
 vmms/id_rsa*
 courselabs/*
 # config
-config.py
+#config.py
+# Don't ignore the config - it's okay to publish this
 
 # Virtualenv
 .Python
