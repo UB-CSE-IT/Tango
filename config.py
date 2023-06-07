@@ -51,7 +51,7 @@ class Config(object):
     DOCKER_VOLUME_PATH = os.getenv("DOCKER_VOLUME_PATH", DEFAULT_DOCKER_VOLUME_PATH)
 
     # Custom distDocker setup
-    HOST_ALIAS = "collins.cse.buffalo.edu"
+    HOST_ALIAS = "autolabworkers.cse.buffalo.edu"
 
     #####
     # Part 2: Constants that shouldn't need to change very often.

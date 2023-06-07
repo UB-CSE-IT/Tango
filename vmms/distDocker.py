@@ -89,7 +89,6 @@ class DistDocker(object):
     _SSH_MASTER_FLAGS = ["-o", "ControlMaster=yes", "-o", "ControlPersist=600"]
     _SSH_MASTER_CHECK_FLAG = ["-O", "check"]
     _SSH_MASTER_EXIT_FLAG = ["-O", "exit"]
-    HOSTS_FILE = "hosts"
 
     def __init__(self):
         """Checks if the machine is ready to run docker containers.
