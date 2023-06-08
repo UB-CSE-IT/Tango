@@ -64,7 +64,7 @@ RUN pip3 install -r requirements.txt
 COPY . .
 RUN mkdir -p volumes
 
-RUN mkdir -p /var/log/docker /var/log/supervisor
+RUN mkdir -p /var/log/docker /var/log/supervisor /var/log/tango
 
 # Move custom config file to proper location
 RUN cp /opt/TangoService/Tango/deployment/config/nginx.conf /etc/nginx/nginx.conf
