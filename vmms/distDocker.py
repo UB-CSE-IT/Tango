@@ -147,7 +147,7 @@ class DistDocker(object):
         # Wait for SSH to work before declaring that the VM is ready
         while True:
             try:
-                addr = socket.gethostbyname(self.hostDNSPoolname)
+                addr = random.choice(socket.gethostbyname_ex(self.hostDNSPoolname)[2])
                 host = socket.gethostbyaddr(addr)[0]
             except EnvironmentError:
                 self.log.exception(
