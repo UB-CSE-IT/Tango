@@ -1,0 +1,15 @@
+# Start with empty ubuntu machine
+FROM ubuntu:20.04
+
+ENV HOME /root
+
+RUN apt-get update && apt-get upgrade
+
+RUN apt install -y curl
+
+WORKDIR /opt
+
+RUN curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs && chmod +x rustup.sh 
+RUN sh rustup.sh -y
+
+RUN apt install -y gcc
