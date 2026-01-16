@@ -1,10 +1,10 @@
 # Start with empty ubuntu machine
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
-MAINTAINER Autolab Development Team "autolab-dev@andrew.cmu.edu"
+LABEL maintainer="Nicholas Myers"
 
 # Setup correct environment variable
-ENV HOME /root
+ENV HOME=/root
 
 # Change to working directory
 WORKDIR /opt
@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
 	supervisor \
 	python3 \
 	python3-pip \
+	python3-virtualenv \
 	build-essential \
 	tcl8.6 \
 	wget \
@@ -50,7 +51,7 @@ VOLUME /var/lib/docker
 WORKDIR /opt
 
 # Create virtualenv to link dependancies
-RUN pip3 install virtualenv && virtualenv .
+RUN virtualenv venv
 
 WORKDIR /opt/TangoService/Tango
 
@@ -58,7 +59,7 @@ WORKDIR /opt/TangoService/Tango
 COPY requirements.txt .
 
 # Install python dependancies
-RUN pip3 install -r requirements.txt
+RUN /opt/venv/bin/pip install -r requirements.txt
 
 # Move all code into Tango directory
 COPY . .
