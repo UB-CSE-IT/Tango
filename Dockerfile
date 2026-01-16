@@ -14,25 +14,29 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN chmod 1777 /tmp
 
+RUN apt-get update && apt-get install -y software-properties-common && \
+    add-apt-repository ppa:deadsnakes/ppa
+
 # Install dependancies
 RUN apt-get update && apt-get install -y \
-	nginx \
-	curl \
-	git \
-	vim \
-	supervisor \
-	python3 \
-	python3-pip \
-	python3-virtualenv \
-	build-essential \
-	tcl8.6 \
-	wget \
-	libgcrypt20-dev \
-	zlib1g-dev \
-	apt-transport-https \
-	ca-certificates \
-	lxc \
-	iptables \
+    nginx \
+    curl \
+    git \
+    vim \
+    supervisor \
+    python3.8 \
+    python3.8-dev \
+    python3.8-distutils \
+    python3.8-venv \
+    build-essential \
+    tcl8.6 \
+    wget \
+    libgcrypt20-dev \
+    zlib1g-dev \
+    apt-transport-https \
+    ca-certificates \
+    lxc \
+    iptables \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -51,7 +55,7 @@ VOLUME /var/lib/docker
 WORKDIR /opt
 
 # Create virtualenv to link dependancies
-RUN virtualenv venv
+RUN python3.8 -m venv venv
 
 WORKDIR /opt/TangoService/Tango
 
@@ -59,7 +63,8 @@ WORKDIR /opt/TangoService/Tango
 COPY requirements.txt .
 
 # Install python dependancies
-RUN /opt/venv/bin/pip install -r requirements.txt
+RUN /opt/venv/bin/pip install --upgrade pip && \
+    /opt/venv/bin/pip install -r requirements.txt
 
 # Move all code into Tango directory
 COPY . .
